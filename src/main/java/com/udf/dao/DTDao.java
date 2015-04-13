@@ -74,9 +74,13 @@ public class DTDao {
                 //rs下标从1开始，这里附件一个序号列。
                 tc.setData("tableID");
                 tc.setTitle("序号");
+                tc.setWidth("50px");
+                tc.setClassName("dt-center");
             }else{
                 tc.setData(rsmd.getColumnName(i));
                 tc.setTitle(rsmd.getColumnLabel(i));
+                tc.setWidth("280px");
+                tc.setClassName("dt-left");
             }
             tableColumns.add(tc);
         }

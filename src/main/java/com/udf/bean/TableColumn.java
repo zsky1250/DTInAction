@@ -7,6 +7,7 @@ public class TableColumn {
     private String title;
     private String data;
     private String className;
+    private String width;
 
     public String getTitle() {
         return title;
@@ -29,6 +30,15 @@ public class TableColumn {
     }
 
     public void setClassName(String className) {
+
         this.className = className;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
     }
 }
