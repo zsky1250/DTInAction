@@ -25,8 +25,11 @@ public class DTAction extends HttpServlet {
         int draw = Integer.valueOf(req.getParameter("draw")).intValue();
         int start = Integer.valueOf(req.getParameter("start")).intValue();
         int length = Integer.valueOf(req.getParameter("length")).intValue();
+        String sql = req.getParameter("sql");
         TableDataService tdService = new TableDataService();
-        String result = tdService.build(draw,start,length);
+        String result = tdService.build(sql,draw,start,length);
+
+        resp.setCharacterEncoding("utf-8");
         PrintWriter writer = resp.getWriter();
         writer.write(result);
     }

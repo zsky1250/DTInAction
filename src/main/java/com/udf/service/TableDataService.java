@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public class TableDataService {
 
-    public String build(int draw, int start, int length) throws JsonProcessingException {
+    public String build(String sql, int draw, int start, int length) throws JsonProcessingException {
         DTDao dao = new DTDao();
         TableDef tableDef = null;
         try {
-            tableDef = dao.excuteSQL(start, length);
+            tableDef = dao.excuteSQL(sql,start,length);
         } catch (SQLException e) {
             e.printStackTrace();
             tableDef.setError(e.getMessage());

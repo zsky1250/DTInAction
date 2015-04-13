@@ -14,7 +14,7 @@ public class TableDef {
     private ArrayList<HashMap<String,String>> datas;
     private int draw;
     private int recordsTotal;
-    private int recordsFilteredTotal;
+    private int recordsFiltered;
     private String error;
 
     public String getError() {
@@ -58,15 +58,11 @@ public class TableDef {
         this.recordsTotal = recordsTotal;
     }
 
-    public int getRecordsFilteredTotal() {
-        return recordsFilteredTotal;
+    public int getRecordsFiltered() {
+        return recordsFiltered;
     }
 
-    public void setRecordsFilteredTotal(int recordsFilteredTotal) {
-        this.recordsFilteredTotal = recordsFilteredTotal;
+    public void setRecordsFiltered(int recordsFiltered) {
+        this.recordsFiltered = recordsFiltered;
     }
-
-
-
-
 }

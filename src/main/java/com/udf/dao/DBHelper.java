@@ -12,10 +12,14 @@ public class DBHelper {
      */
 
     //1.下面是几个常量
-    private static final String DRIVER ="oracle.jdbc.driver.OracleDriver";// "oracle.jdbc.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@127.0.0.1:1521:ORCL";
-    private static final String DB_NAME = "ai";
-    private static final String DB_PASSWORD = "ai";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/ai";
+    private static final String DB_NAME = "root";
+    private static final String DB_PASSWORD = "root";
+//    private static final String DRIVER ="oracle.jdbc.driver.OracleDriver";// "oracle.jdbc.OracleDriver";
+//    private static final String URL = "jdbc:oracle:thin:@127.0.0.1:1521:ORCL";
+//    private static final String DB_NAME = "ai";
+//    private static final String DB_PASSWORD = "ai";
 
     /**
      * 获取数据库的连接

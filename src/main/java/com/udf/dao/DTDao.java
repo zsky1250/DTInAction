@@ -15,8 +15,8 @@ public class DTDao {
 
     private DBHelper engine = new DBHelper();
 
-    public TableDef excuteSQL(int startRow,int rowPerPage) throws SQLException {
-        String sql = "select a.req_id ,a.req_tag ，a.req_name  from ALM_REQUISITION a";
+    public TableDef excuteSQL(String sql,int startRow,int rowPerPage) throws SQLException {
+        //String sql = "select a.req_id as 序号,a.req_tag as 标签,a.req_name 需求名称  from ALM_REQUISITION a";
         Connection conn = engine.getConnection();
         PreparedStatement psta = null;
         ResultSet rs = null;
@@ -38,18 +38,23 @@ public class DTDao {
             ArrayList<HashMap<String,String>> tableDatas = new ArrayList<>();
             for(int i = 0;rs.next()&&i<rowPerPage;i++){
                 HashMap<String,String> data = new HashMap<>();
-                for(int j = 1 ;j<=totalColumn;j++){
-                   data.put(rsmd.getColumnName(j),rs.getString(j));
+                for(int j = 0 ;j<=totalColumn;j++){
+                    if(j==0){
+                        //第一列填充为空数据，为了前台显示序号用。
+                        data.put("tableID","");
+                    }else{
+                        data.put(rsmd.getColumnName(j), rs.getString(j));
+                    }
                 }
                 tableDatas.add(data);
             }
 
-            TableDef td = new TableDef();
-            td.setColumn(tableColumns);
-            td.setDatas(tableDatas);
-            td.setRecordsTotal(totalRow);
-            td.setRecordsFilteredTotal(totalRow);
-            return td;
+            TableDef tableDef = new TableDef();
+            tableDef.setColumn(tableColumns);
+            tableDef.setDatas(tableDatas);
+            tableDef.setRecordsTotal(totalRow);
+            tableDef.setRecordsFiltered(totalRow);
+            return tableDef;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -63,10 +68,16 @@ public class DTDao {
 
     public ArrayList<TableColumn> buildColumnInfo(ResultSetMetaData rsmd,int totalColumn) throws SQLException {
         ArrayList<TableColumn> tableColumns = new ArrayList<TableColumn>();
-        for(int i = 1;i<=totalColumn;i++){
+        for(int i = 0;i<=totalColumn;i++){
             TableColumn tc = new TableColumn();
-            tc.setData(rsmd.getColumnName(i));
-            tc.setTitle(rsmd.getColumnLabel(i));
+            if(i==0){
+                //rs下标从1开始，这里附件一个序号列。
+                tc.setData("tableID");
+                tc.setTitle("序号");
+            }else{
+                tc.setData(rsmd.getColumnName(i));
+                tc.setTitle(rsmd.getColumnLabel(i));
+            }
             tableColumns.add(tc);
         }
         return tableColumns;
