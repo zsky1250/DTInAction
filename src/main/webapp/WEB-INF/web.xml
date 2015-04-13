@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="DTInAction" version="3.0">
+
+    <display-name>html</display-name>
+
+    <!-- Spring MVC 配置 默认拦截所有请求 -->
+    <servlet>
+        <servlet-name>DTAction</servlet-name>
+        <servlet-class>com.udf.DTAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DTAction</servlet-name>
+        <url-pattern>/DTAction</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- =========error handle=========  -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/PageNotFound</location>
+    </error-page>
+
+    <!-- 默认文件名 -->
+    <welcome-file-list>
+        <welcome-file>html/index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
